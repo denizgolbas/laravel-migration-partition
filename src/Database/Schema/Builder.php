@@ -60,6 +60,30 @@ class Builder extends IlluminateBuilder
             $callback($blueprint);
         }));
     }
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * Create a new range partition on the table.
+     *
+     * @param string $table
+     * @param \Closure $callback
+     * @param string $partitionTableName
+     * @param string $startDate
+     * @param string $endDate
+     * @return void
+     */
+    public function attachRangePartition(string $table, Closure $callback, string $partitionTableName, string $startDate, string $endDate)
+    {
+        $this->build(tap($this->createBlueprint($table), function ($blueprint) use ($callback, $partitionTableName, $startDate, $endDate) {
+            $blueprint->attachRangePartition();
+            $blueprint->partitionTableName = $partitionTableName;
+            $blueprint->startDate = $startDate;
+            $blueprint->endDate = $endDate;
+            $callback($blueprint);
+        }));
+    }
+>>>>>>> Stashed changes
 
     /**
      * Create a new table on the schema with list partitions.
@@ -168,7 +192,21 @@ class Builder extends IlluminateBuilder
     }
 
     /**
+<<<<<<< Updated upstream
      * Get all the range partitioned table names
+=======
+     * Get all of the table names for the database.
+     * @param  string  $table
+     * @return array
+     */
+    public function getPartitions (string $table)
+    {
+        return  array_column(DB::select($this->grammar->compileGetPartitions($table)), 'tables');
+    }
+
+    /**
+     * Get all of the table names for the database.
+>>>>>>> Stashed changes
      *
      * @return array
      */

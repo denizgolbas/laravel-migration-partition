@@ -107,6 +107,40 @@ class PostgresGrammar extends IlluminatePostgresGrammar
     }
 
     /**
+<<<<<<< Updated upstream
+=======
+     * Compile a create table partition command for a hash partitioned table.
+     *
+     * @param  Blueprint  $blueprint
+     * @param  \Illuminate\Support\Fluent  $command
+     * @return array
+     */
+    public function compileAttachHashPartition(Blueprint $blueprint, Fluent $command)
+    {
+        return sprintf('alter table %s partition of %s for values with (modulus %s, remainder %s)',
+            str_replace("\"", "", $this->wrapTable($blueprint)),
+            $blueprint->partitionTableName,
+            $blueprint->hashModulus,
+            $blueprint->hashRemainder,
+        );
+    }
+
+    /**
+     * Get partition tables for a particular partitioned table
+     * @param  string  $table
+     * @return string
+     */
+    public function compileGetPartitions(string $table)
+    {
+        return  sprintf("SELECT inhrelid::regclass as tables
+            FROM   pg_catalog.pg_inherits
+            WHERE  inhparent = '%s'::regclass;",
+            $table,
+        );
+    }
+
+    /**
+>>>>>>> Stashed changes
      * Get All Range Partitioned Tables
      * @return string
      */

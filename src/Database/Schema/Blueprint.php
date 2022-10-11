@@ -171,4 +171,47 @@ class Blueprint extends IlluminateBlueprint
     {
         return $this->addCommand('getAllRangePartitionedTables');
     }
+<<<<<<< Updated upstream
+=======
+
+    /**
+     * Create a hash partition and attach it to the partitioned table.
+     *
+     * @return \Illuminate\Support\Fluent
+     */
+    public function getAllHashPartitionedTables()
+    {
+        return $this->addCommand('getAllHashPartitionedTables');
+    }
+
+    /**
+     * Create a hash partition and attach it to the partitioned table.
+     *
+     * @return \Illuminate\Support\Fluent
+     */
+    public function getAllListPartitionedTables()
+    {
+        return $this->addCommand('getAllListPartitionedTables');
+    }
+
+    /**
+     * Create a hash partition and attach it to the partitioned table.
+     *
+     * @return \Illuminate\Support\Fluent
+     */
+    public function getPartitions()
+    {
+        return $this->addCommand('getPartitions');
+    }
+    /**
+     * Indicate that the table needs to be created with a range partition.
+     *
+     * @return \Illuminate\Support\Fluent
+     */
+    public function detachPartition()
+    {
+        return $this->addCommand('detachPartition');
+    }
+
+>>>>>>> Stashed changes
 }
